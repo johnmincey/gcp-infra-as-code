@@ -9,7 +9,26 @@ variable "region" {
   default     = "us-central1"
 }
 
-# TODO: variable "environment" (string, default "dev").
-# You'll add a `validation` block to this exact variable in
-# 005_variable_validation — keep the name and type as described in
-# README.md so that addition drops in cleanly.
+variable "environment" {
+  description = "Deployment environment, used to build common_labels. Gets a validation block added in 005_variable_validation."
+  type        = string
+  default     = "dev"
+}
+
+
+
+# TODO: variable "project_id" {
+#   type        = string
+#   description = "GCP project ID to deploy resources into."
+#   # no default — Terraform will require it (via terraform.tfvars or -var)
+# }
+
+# TODO: variable "region" {
+#   type    = string
+#   default = "us-central1"
+# }
+
+# TODO: variable "bucket_name" {
+#   type = string
+#   # no default — must be supplied, same reasoning as project_id
+# }

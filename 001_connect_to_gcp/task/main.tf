@@ -3,25 +3,22 @@ terraform {
 
   required_providers {
     google = {
-      source = "hashicorp/google"
-      # TODO: pin a provider version, e.g. "~> 5.0"
-      version = ""
+      source  = "hashicorp/google"
+      version = "~> 5.0"
     }
   }
 }
 
 provider "google" {
-  # TODO: project = "___" (optionally region/zone too)
+  project = "project-02-499004" # TODO: replace with your project ID
+  region  = "us-central1"
 }
 
-# TODO: data "google_project" "this" {
-#   # No arguments required — an empty block looks up the provider's
-#   # default project. See the Argument Reference on the docs page
-#   # above for what else this data source accepts.
-# }
+data "google_project" "this" {
+  # No project_id set — this defaults to the provider's configured
+  # project above, so there's only one place to put your project ID.
+}
 
-# TODO: output "project_display_name" {
-#   value = data.google_project.this.___
-#   # See the Attributes Reference on the docs page above for the
-#   # exact attribute name that holds the human-readable project name.
-# }
+output "project_display_name" {
+  value = data.google_project.this.name
+}

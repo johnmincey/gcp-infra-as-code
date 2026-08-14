@@ -14,5 +14,24 @@ provider "google" {
   region  = var.region
 }
 
+resource "google_storage_bucket" "this" {
+  name                        = "${var.project_id}-${var.environment}-bucket"
+  location                    = "US"
+  force_destroy               = true
+  uniform_bucket_level_access = true
+
+  labels = {
+    environment = var.environment
+  }
+
+  lifecycle_rule {
+    condition {
+      age = var.retention_days
+    }
+    action {
+      type = "Delete"
+    }
+  }
+}
 # TODO: google_storage_bucket "this" using var.environment in labels
 # and var.retention_days in a lifecycle_rule

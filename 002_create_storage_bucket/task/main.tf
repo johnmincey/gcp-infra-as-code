@@ -10,9 +10,30 @@ terraform {
 }
 
 provider "google" {
-  project = "" # TODO: your project ID
+  project = "project-02-499004" # TODO: your project ID
   region  = "us-central1"
 }
+
+resource "google_storage_bucket" "my_bucket" {
+  name                        = "project-02-499004-exercise-002" # TODO: must be globally unique
+  location                    = "US"
+  uniform_bucket_level_access = true
+
+  # Stretch goal
+  versioning {
+    enabled = true
+  }
+
+  lifecycle_rule {
+    condition {
+      age = 30
+    }
+    action {
+      type = "Delete"
+    }
+  }
+}
+
 
 # TODO: resource "google_storage_bucket" "my_bucket" {
 #   name                        = "___"  # must be globally unique — include your project ID
