@@ -1,3 +1,14 @@
+output "bucket_url" {
+  description = "gs:// URL of the bucket."
+  value       = google_storage_bucket.my_bucket.url
+}
+
+output "bucket_self_link" {
+  description = "Self link of the bucket."
+  value       = google_storage_bucket.my_bucket.self_link
+}
+
+
 # TODO: output "bucket_url" {
 #   value = google_storage_bucket.my_bucket.___
 #   # Check the Attributes Reference on the google_storage_bucket
