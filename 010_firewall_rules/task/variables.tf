@@ -4,7 +4,7 @@ variable "project_id" {
 }
 
 variable "region" {
-  description = "Region for the subnet and provider default."
+  description = "Region for the subnets and provider default."
   type        = string
   default     = "us-central1"
 }

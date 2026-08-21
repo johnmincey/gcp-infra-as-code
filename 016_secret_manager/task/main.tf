@@ -14,6 +14,23 @@ provider "google" {
   region  = var.region
 }
 
+resource "google_project_service" "secretmanager" {
+  project            = var.project_id
+  service            = "secretmanager.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_secret_manager_secret" "app_secret" {
+  secret_id = "app-secret"
+
+  replication {
+    auto {}
+  }
+
+  depends_on = [google_project_service.secretmanager]
+}
+
+
 # TODO: google_project_service "secretmanager" (secretmanager.googleapis.com)
 
 # TODO: google_secret_manager_secret "app_secret"

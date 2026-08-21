@@ -9,6 +9,17 @@ variable "region" {
   default     = "us-central1"
 }
 
+variable "environment" {
+  description = "Same validated variable from 004_locals / 005_variable_validation, carried forward as-is."
+  type        = string
+  default     = "dev"
+
+  validation {
+    condition     = contains(["dev", "staging", "prod"], var.environment)
+    error_message = "environment must be one of: dev, staging, prod."
+  }
+}
+
 # TODO: this is the same validated "environment" variable from
 # 005_variable_validation — copy it forward (string, default "dev",
 # with the validation block restricting it to dev/staging/prod).

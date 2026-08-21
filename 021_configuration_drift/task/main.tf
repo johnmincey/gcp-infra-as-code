@@ -14,6 +14,17 @@ provider "google" {
   region  = var.region
 }
 
+resource "google_storage_bucket" "drift_demo" {
+  name                        = "${var.project_id}-drift-demo"
+  location                    = "US"
+  force_destroy               = true
+  uniform_bucket_level_access = true
+
+  labels = {
+    environment = "dev"
+  }
+}
+
 # TODO: google_storage_bucket "drift_demo"
 # - force_destroy = true
 # - uniform_bucket_level_access = true
